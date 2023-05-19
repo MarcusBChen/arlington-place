@@ -1,5 +1,12 @@
 
 // Ian's Code
+
+fetch('/get')
+    .then( response => response.json() )
+    .then( response => {
+        alert(response);
+    } );
+    
 function createGrid() {
     for (i=0; i<2500; i++) {
         const div = document.createElement("div");
@@ -14,7 +21,7 @@ function createGrid() {
 }
 
 function tileClicked(id) {
-
+    console.log(id);
     const tile = document.getElementById("tile" + this.id);
     tile.style.backgroundColor = "black";
 }
