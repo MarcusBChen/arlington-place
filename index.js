@@ -29,29 +29,33 @@ app.get('/get', async (req, res) => {
 
 app.get('/set', async (req, res) => {
   var args = req.query;
-  const imageUrl = generateImage(args.prompt);
-  setTile(args.row,args.col,args.name,imageUrl, userId);
+  console.log(args)
+  const imageUrl = await generateImage(args.prompt);
+  setTile(args.row, args.col, args.name, imageUrl, args.prompt);
 })
 
-async function generateImage (prompt) {
-/*const response = await openai.createImage({
-  prompt: prompt,
-  n: 1,
-  size: "1024x1024",
-});
-*/
-return "https://image.com/123.png" //response.data.data[0].url;
+async function generateImage(prompt) {
+  const response = await openai.createImage({
+    prompt: prompt,
+    n: 1,
+    size: "1024x1024",
+  });
+  const url = await response.data.data[0].url;
+  console.log(url)
+  return url;
 }
+
+//console.log(generateImage("a happy community of people"))
 
 function getTile(r, c, name) {
   return Murals.get(murals => murals.arlington).arlington[r][c]
 }
 
-function setTile(r, c, name, imageUrl, userId) {
-  const tile = getTile(r,c)
+function setTile(r, c, name, imageUrl, prompt) {
+  const tile = getTile(r, c)
   tile.name = name
-  tile.userId = userId
   tile.imageUrl = imageUrl
+  tile.prompt = prompt
 }
 
 app.listen(8080);

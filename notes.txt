@@ -20,4 +20,5 @@ image_url = response.data.data[0].url;
 https://platform.openai.com/docs/guides/images/introduction
 
 args
-row, col, name, imageUrl, userId, prompt
+row, col, name, prompt
+
