@@ -2,6 +2,8 @@ var express = require('express')
 var app = express()
 app.use(express.static('public'))
 
+require('dotenv').config();
+
 const SimplDB = require('simpl.db');
 const db = new SimplDB();
 
@@ -21,22 +23,24 @@ if (Murals.get(murals => murals.arlington) === null) {
   Murals.create({ arlington: mural });
 }
 
-setTile(0, 0, "Liam", 123, "hhtps://google.com");
-console.log(getTile(0, 0))
-
-app.get('/submit', (req, res) => {
-  var args = req.query;
-
-  setTile(args.row,args.col,args.name,imageUrl);
+app.get('/get', async (req, res) => {
+  res.send(Murals.get(murals => murals.arlington).arlington);
 })
 
-async function generateImage () {
-const response = await openai.createImage({
-  prompt: "a white siamese cat",
+app.get('/set', async (req, res) => {
+  var args = req.query;
+  const imageUrl = generateImage(args.prompt);
+  setTile(args.row,args.col,args.name,imageUrl, userId);
+})
+
+async function generateImage (prompt) {
+/*const response = await openai.createImage({
+  prompt: prompt,
   n: 1,
   size: "1024x1024",
 });
-image_url = response.data.data[0].url;
+*/
+return "https://image.com/123.png" //response.data.data[0].url;
 }
 
 function getTile(r, c, name) {
@@ -50,4 +54,4 @@ function setTile(r, c, name, imageUrl, userId) {
   tile.imageUrl = imageUrl
 }
 
-app.listen(3000);
+app.listen(8080);

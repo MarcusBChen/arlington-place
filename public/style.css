@@ -12,12 +12,14 @@ body {
 
 nav {
     width: 100vw;
-    height: 60px;
+    height: 80px;
     background: linear-gradient(to bottom right, rgb(86, 5, 5), rgb(86, 5, 5), white);
     background: var(--maroon);
     text-align: center;
     color: white;
     font-size: 40px;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
 }
 
 nav .title {
@@ -28,7 +30,10 @@ nav .title {
 }
 
 nav .logo {
-    background: blue;
+    height: 60px;
+}
+nav .logo img {
+    height: 100%;
 }
 
 /* Wrapper */
