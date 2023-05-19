@@ -1,21 +1,18 @@
-
-// Ian's Code
 var mural;
 function updateMural() {
     fetch('/get') // get 2d array wth all values
         .then(response => response.json())
         .then(response => {
             mural = response;
-            for (i = 0; i < 50; i++) {
-                for(k = 0; k < 50; k++) {
-                    const div = document.querySelector(`[data-id="${i * 50 + k}"]`);
-                    div.style.backgroundImage = `url(${mural[i][k].imageUrl})`;
+            console.log(mural);
+            for (i = 0; i < 10; i++) {
+                for(k = 0; k < 10; k++) {
+                    let div = document.querySelector(`[data-id="${i * 10 + k}"]`);
+                    div.style.backgroundImage = mural[i][k].imageUrl;
                 }
             }
         });
 }
-
-
 
 function createGrid() {
     for (i = 0; i < 100; i++) {
@@ -42,8 +39,8 @@ async function addImage() {
     const prompt = document.querySelector("#input").value;
     // get the row and column of the selected tile
     let { row, col } = getSelectedRC();
-    // post the prompt, row, and column to the server
-    let img = await fetch(`/set?prompt=${prompt}&row=${row}&col=${col}`)
+    // post the prompt, name and id to the server
+    let img = await fetch(`/set?prompt=${prompt}&name=${"John"}&id=${"206027"}&elm=${document.querySelector(".selected").getAttribute("data-id")}`)
     img  = await img.text()
     // update the mural
     // change the selected tile to the image retruned
@@ -57,8 +54,8 @@ function getSelectedRC() {
     // get what child number the selected tile is
     const selectedTileNumber = selectedTile.getAttribute("data-id");
     // get the row and column of the selected tile
-    const row = Math.floor(selectedTileNumber / 50);
-    const col = selectedTileNumber % 50;
+    const row = Math.floor(selectedTileNumber / 10);
+    const col = selectedTileNumber % 10;
     return { row, col };
 }
 function selectTile(elm) {

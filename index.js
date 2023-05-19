@@ -1,42 +1,46 @@
+// server
 var express = require('express')
 var app = express()
 app.use(express.static('public'))
 
-//import fs
+// file system
 const fs = require('fs');
-
-
 require('dotenv').config();
 
-const SimplDB = require('simpl.db');
-const db = new SimplDB();
-
+// openai
 const { Configuration, OpenAIApi } = require("openai");
-
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
 console.log(process.env.OPENAI_API_KEY)
 const openai = new OpenAIApi(configuration);
 
-const Murals = db.createCollection('murals');
 
-if (Murals.get(murals => murals.arlington) === null) {
-  var mural = [...Array(50)].map(e => Array(50).fill([]));
-  Murals.create({ arlington: mural });
+function getMural() {
+  // using fs to read the file
+  const data = fs.readFileSync('mural.json', 'utf8');
+  // parse the data into a JavaScript object
+  const mural = JSON.parse(data);
+  // return the mural
+  return mural;
+}
+function setMural(thing) {
+  // convert the mural to a JSON string
+  const data = JSON.stringify(thing);
+  // write the data to the file
+  fs.writeFileSync('mural.json', data);
 }
 
 app.get('/get', async (req, res) => {
-  res.send(Murals.get(murals => murals.arlington).arlington);
+  res.send(JSON.stringify(getMural));
 })
 
 app.get('/set', async (req, res) => {
   var args = req.query;
   console.log(args)
-  const imageUrl = await generateImage(args.prompt);
+  let imageUrl = "https://underminerstudios.com/wp-content/uploads/2018/03/Depositphotos_9750622_m-2015.jpg" //await generateImage(args.prompt);
+  setTile(args.name, imageUrl, args.prompt, args.id);
   res.send(imageUrl);
-  //(args.row, args.col, args.name, imageUrl, args.prompt);
 })
 
 async function generateImage(prompt) {
@@ -53,18 +57,18 @@ async function generateImage(prompt) {
 //console.log(generateImage("a happy community of people"))
 
 function getTile(r, c, name) {
-  return Murals.get(murals => murals.arlington).arlington[r][c]
+  return getMural()[r][c];
 }
 
-function setTile(r, c, name, imageUrl, prompt) {
-  const tile = getTile(r,c)
+function setTile(name, imageUrl, prompt, id) {
+  let mural = getMural();
+  let tile = {};
   tile.name = name
   tile.imageUrl = imageUrl
   tile.prompt = prompt
-  var arr = Murals.get(murals => murals.arlington).arlington
-  arr[r][c] = tile;
-  fs.writeFile('collections/murals.json', JSON.stringify(arr), function (err) {});
-  
+  if(id && id < mural.length) mural[id] = tile;
+  else mural.push(tile);
+  setMural(mural);
 }
 
 app.listen(8080);
