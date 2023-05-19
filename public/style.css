@@ -95,8 +95,8 @@ nav .logo img {
 
 .muralGrid {
     display: grid;
-    grid-template-columns: repeat(20, auto);
-    grid-template-rows: repeat(20, auto);
+    grid-template-columns: repeat(10, auto);
+    grid-template-rows: repeat(10, auto);
     height: 100%;
     width: 100%;
     gap: 1px;

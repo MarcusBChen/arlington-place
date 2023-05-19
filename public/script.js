@@ -18,7 +18,7 @@ function updateMural() {
 
 
 function createGrid() {
-    for (i = 0; i < 400; i++) {
+    for (i = 0; i < 100; i++) {
         const div = document.createElement("div");
         const element = document.querySelector(".muralGrid");
         div.setAttribute("data-id", i);
