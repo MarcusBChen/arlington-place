@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+/* Whole page */
+body {
+    background: var(--color-tone-7);
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    width: 100vw;
+    height: 60px;
+    background: linear-gradient(to bottom right, rgb(86, 5, 5), rgb(86, 5, 5), white);
+    background: var(--maroon);
+    text-align: center;
+    color: white;
+    font-size: 40px;
+}
+
+nav .title {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    padding: 5px;
+}
+
+
+/* Wrapper */
+.wrapper {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+/* Text info */
+.info p {
+    margin: 15px 0;
+}
+
+.textInput {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    border: 2px solid var(--maroon);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.textInput .prompt {
+    flex: 1;
+    border: none;
+    outline: 0;
+    border-radius: 20%;
+    padding: 10px 15px;
+    font-size: 20px;
+}
+
+.textInput .submit {
+    flex: 1;
+    border: none;
+    min-width: 50px;
+    max-width: 50px;
+    cursor: pointer;
+    background: var(--maroon);
+    color: white;
+    font-size: 20px;
+}
+
+
+/* Mural Grid */
+.mural {
+    height: 780px;
+    width: 780px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+    .mural {
+        height: calc(100vw - 20px);
+        width: calc(100vw - 20px);
+    }
+}
+
+.muralGrid {
+    display: grid;
+    grid-template-columns: repeat(50, auto);
+    grid-template-rows: repeat(50, auto);
+    height: 100%;
+    width: 100%;
+    gap: 1px;
+}
+
+.muralGrid div {
+    background: var(--maroon);
+    transition: 200ms;
+    height: auto;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.muralGrid div:hover {
+    opacity: 0.8;
+}

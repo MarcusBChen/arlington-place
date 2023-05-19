@@ -1,0 +1,102 @@
+@import url("https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css");
+
+/* Establish Colors */
+:root,
+.light {
+    /* OG colors*/
+    --gray: #86888a;
+    --orange: #f5793a;
+    --blue: #85c0f9;
+    /* Septle colors */
+    --purple: #21123b;
+    --light-pink: #ffe6ea;
+    --pink: #e06377;
+    --brown: #a95c35;
+    --green: #79b851;
+    --yellow: #f3c237;
+    /* BlockStatus colors */
+    --light-yellow: #f3c23766;
+    --very-light-yellow: #f3c23744;
+    --dark-green: #18b461;
+    --red: #f92954;
+    --ios-blue: #007AFF;
+    /* index colors */
+    --index: #9479a3;
+    --light-index: #9479a366;
+    --very-light-index: #9479a344;
+    /* Font Awesome Customization */
+    --fa-secondary-opacity: 0.70;
+    /* Light Colors */
+    --color-tone-1: #1a1a1b;
+    --color-tone-2: #787c7e;
+    --color-tone-3: #878a8c;
+    --color-tone-4: #d3d6da;
+    --color-tone-5: #edeff1;
+    --color-tone-6: #f6f7f8;
+    --color-tone-7: #ffffff;
+    --opacity-50: #f3f2f8;
+    --transparent: #f3f2f8aa;
+    --blob: var(--color-tone-7);
+    --blobBorder: var(--color-tone-4);
+    --blobButton: var(--color-tone-5);
+    /* MARCUS PUT COLOR HERE */
+    --maroon: rgb(150, 50, 50);
+}
+
+
+.dark {
+    /* Dark Colors */
+    --color-tone-1: #d7dadc;
+    --color-tone-2: #818384;
+    --color-tone-3: #565758;
+    --color-tone-4: #3a3a3c;
+    --color-tone-5: #272729;
+    --color-tone-6: #1a1a1b;
+    --color-tone-7: #121213;
+    --opacity-50: #000000;
+    --transparent: #000000aa;
+    --blob: var(--color-tone-6);
+    --blobBorder: var(--color-tone-5);
+    --blobButton: var(--color-tone-4);
+}
+
+* {
+    box-sizing: border-box;
+    /* Prevent system buttons */
+    -webkit-appearance: none;
+    appearance: none;
+    /* iOS/mobile device scroll fixes */
+    touch-action: pan-y;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: auto;
+    /* Safari */
+    user-select: auto;
+    transition: background 0.1s, color 0.1s, border 0.1s;
+}
+
+*:not(input) {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    background: var(--opacity-50);
+    color: var(--color-tone-1);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    /* mobile viewport bug fix */
+    position: fixed;
+    height: -webkit-fill-available;
+    /* Prevent font scaling in landscape while allowing user zoom */
+    -webkit-text-size-adjust: 100%;
+}
+
+span.spacing {
+    display: block;
+    height: 10px;
+    width: 100%;
+}
