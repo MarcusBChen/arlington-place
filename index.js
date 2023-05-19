@@ -2,6 +2,10 @@ var express = require('express')
 var app = express()
 app.use(express.static('public'))
 
+//import fs
+const fs = require('fs');
+
+
 require('dotenv').config();
 
 const SimplDB = require('simpl.db');
@@ -19,7 +23,7 @@ const openai = new OpenAIApi(configuration);
 const Murals = db.createCollection('murals');
 
 if (Murals.get(murals => murals.arlington) === null) {
-  var mural = [...Array(20)].map(e => Array(20).fill([]));
+  var mural = [...Array(50)].map(e => Array(50).fill([]));
   Murals.create({ arlington: mural });
 }
 
@@ -31,7 +35,8 @@ app.get('/set', async (req, res) => {
   var args = req.query;
   console.log(args)
   const imageUrl = await generateImage(args.prompt);
-  setTile(args.row, args.col, args.name, imageUrl, args.prompt);
+  res.send(imageUrl);
+  //(args.row, args.col, args.name, imageUrl, args.prompt);
 })
 
 async function generateImage(prompt) {
@@ -52,10 +57,14 @@ function getTile(r, c, name) {
 }
 
 function setTile(r, c, name, imageUrl, prompt) {
-  const tile = getTile(r, c)
+  const tile = getTile(r,c)
   tile.name = name
   tile.imageUrl = imageUrl
   tile.prompt = prompt
+  var arr = Murals.get(murals => murals.arlington).arlington
+  arr[r][c] = tile;
+  fs.writeFile('collections/murals.json', JSON.stringify(arr), function (err) {});
+  
 }
 
 app.listen(8080);
