@@ -13,6 +13,9 @@
 
 <body>
     <nav>
+        <div class="logo">
+            <img alt="logo" class="logo">
+        </div>
         <div class="title">Arlington Place</div>
     </nav>
     <div class="wrapper">
@@ -20,7 +23,7 @@
             <p>Everyone in arlington is welcome to come and colaborate... to do this just type in box... yata yata</p>
             <div class="textInput">
                 <input type="text" id="input" placeholder="Type here..." class="prompt">
-                <button class="submit" onclick="">
+                <button class="submit" onclick="promptInput()">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
@@ -29,6 +32,11 @@
         <div class="mural">
             <div class="muralGrid"></div>
         </div>
+    </div>
+
+    <div class="blur">
+        <div class="actualBlur"></div>
+        <div class="zoomedImage"></div>
     </div>
     <script src="script.js"></script>
 </body>

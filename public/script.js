@@ -9,6 +9,14 @@ function createGrid() {
     }
 }
 
+function promptInput() {
+    const textInput = document.querySelector(".textInput");
+    const blur = document.querySelector(".blur");
+    blur.style.transform = "scaleX(1";
+    let text = textInput.value;
+
+}
+
 
 function load() {
     createGrid();
