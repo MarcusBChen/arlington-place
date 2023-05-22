@@ -68,7 +68,6 @@ nav .logo img {
 .textInput .submit {
     flex: 1;
     border: none;
-    min-width: 50px;
     max-width: 50px;
     cursor: pointer;
     background: var(--maroon);
@@ -98,6 +97,8 @@ nav .logo img {
     height: 100%;
     width: 100%;
     gap: 1px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .muralGrid div {

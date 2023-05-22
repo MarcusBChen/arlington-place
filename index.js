@@ -32,7 +32,7 @@ function setMural(thing) {
 }
 
 app.get('/get', async (req, res) => {
-  res.send(JSON.stringify(getMural));
+  res.send(JSON.stringify(getMural()));
 })
 
 app.get('/set', async (req, res) => {
